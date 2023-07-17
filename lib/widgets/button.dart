@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
+import 'package:integration_flutter_rocket/constants/util.dart';
+import 'package:integration_flutter_rocket/screens/login.dart';
+import 'package:integration_flutter_rocket/screens/signup.dart';
 import 'package:integration_flutter_rocket/widgets/elevated_button.dart';
 
 class Buttons extends StatelessWidget {
-  const Buttons({super.key});
+  final String title;
+  const Buttons({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +17,18 @@ class Buttons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(AppTexts.heveAccount),
+            Text(title == AppTexts.signUp
+                ? AppTexts.heveAccount
+                : AppTexts.alreadyAccount),
             TextButton(
-              onPressed: () {},
-              child: const Text(AppTexts.signUp),
+              onPressed: () {
+                if (title == AppTexts.signUp) {
+                  context.push(const SignUp());
+                } else {
+                  context.push(const LogIn());
+                }
+              },
+              child: Text(title),
             ),
           ],
         )
