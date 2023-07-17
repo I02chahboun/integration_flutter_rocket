@@ -4,4 +4,7 @@ class AppTexts {
   static const String titleLogin = "Login";
   static const String heveAccount = "Don’t have an account?";
   static const String signUp = "Singup";
+  static const String titleSignUp = "Sign Up";
+  static const String alreadyAccount = "Already have an account?";
+  static const String signin = "signin";
 }
