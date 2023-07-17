@@ -3,6 +3,7 @@ import 'package:integration_flutter_rocket/constants/image.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
 import 'package:integration_flutter_rocket/widgets/button.dart';
 import 'package:integration_flutter_rocket/widgets/text_filed.dart';
+import 'package:integration_flutter_rocket/widgets/title_auth.dart';
 
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
@@ -25,10 +26,7 @@ class LogIn extends StatelessWidget {
                 ),
               ),
               const Expanded(
-                child: Text(
-                  AppTexts.titleLogin,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-                ),
+                child: TitleAuth(title: AppTexts.titleLogin),
               ),
               Expanded(
                 child: TextFielld(
@@ -36,8 +34,9 @@ class LogIn extends StatelessWidget {
                 ),
               ),
               Expanded(child: TextFielld(labelText: AppTexts.labelPassword)),
-              const Buttons(),
-              const Spacer(),
+              const Buttons(
+                title: AppTexts.signUp,
+              ),
             ],
           ),
         ),
