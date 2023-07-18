@@ -20,7 +20,7 @@ class LogIn extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Expanded(
-                flex: 4,
+                flex: 5,
                 child: Image(
                   image: AssetImage(AppAssets.vectorLogin),
                 ),
