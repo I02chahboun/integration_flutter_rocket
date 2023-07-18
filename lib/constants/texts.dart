@@ -6,5 +6,5 @@ class AppTexts {
   static const String signUp = "Singup";
   static const String titleSignUp = "Sign Up";
   static const String alreadyAccount = "Already have an account?";
-  static const String signin = "signin";
+  static const String signin = "Signin";
 }
