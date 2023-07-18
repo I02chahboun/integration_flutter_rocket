@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:integration_flutter_rocket/constants/util.dart';
+import 'package:integration_flutter_rocket/screens/home.dart';
 
 class ElevatedButtonn extends StatelessWidget {
   final String title;
@@ -7,7 +9,9 @@ class ElevatedButtonn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        context.push(const Home());
+      },
       style: ButtonStyle(
         shape: MaterialStateProperty.all(
             const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
