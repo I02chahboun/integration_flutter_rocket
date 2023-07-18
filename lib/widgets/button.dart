@@ -11,15 +11,16 @@ class Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isSignUp = title == AppTexts.signUp;
     return Column(
       children: [
-        const ElevatedButtonn(),
+        ElevatedButtonn(
+          title: isSignUp ? AppTexts.titleLogin : AppTexts.titleSignUp,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title == AppTexts.signUp
-                ? AppTexts.heveAccount
-                : AppTexts.alreadyAccount),
+            Text(isSignUp ? AppTexts.heveAccount : AppTexts.alreadyAccount),
             TextButton(
               onPressed: () {
                 if (title == AppTexts.signUp) {
