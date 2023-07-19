@@ -3,7 +3,7 @@ import 'package:integration_flutter_rocket/constants/color.dart';
 
 class CardProduct extends StatelessWidget {
   final String image, title, description;
-  final double price;
+  final int price;
   const CardProduct(
       {super.key,
       required this.image,
