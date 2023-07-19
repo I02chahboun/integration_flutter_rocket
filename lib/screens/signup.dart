@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rocket/flutter_rocket.dart';
-import 'package:integration_flutter_rocket/constants/api.dart';
 import 'package:integration_flutter_rocket/constants/image.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
 import 'package:integration_flutter_rocket/constants/util.dart';
@@ -34,7 +33,7 @@ class SignUp extends StatelessWidget {
                       return Buttons(
                         title: AppTexts.signin,
                         onPressed: () {
-                          _registerUser(context);
+                          context.push(Home());
                         },
                       );
                     }),
@@ -46,27 +45,27 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  void _registerUser(BuildContext context) {
-    final Map<String, dynamic> data = {
-      "name": "Developer",
-      "email": "Developer5@gmail.com",
-      "password": 123456
-    };
-    Rocket.get<RocketClient>("post")
-        .request(
-          Api.register,
-          model: post,
-          data: data,
-          method: HttpMethods.post,
-        )
-        .whenComplete(() => _validPost(context));
-  }
+  // void _registerUser(BuildContext context) {
+  //   final Map<String, dynamic> data = {
+  //     "name": "Developer",
+  //     "email": "Developer5@gmail.com",
+  //     "password": 123456
+  //   };
+  //   Rocket.get<RocketClient>("post")
+  //       .request(
+  //         Api.register,
+  //         model: post,
+  //         data: data,
+  //         method: HttpMethods.post,
+  //       )
+  //       .whenComplete(() => _validPost(context));
+  // }
 
-  void _validPost(BuildContext context) {
-    if (post.existData) {
-      context.push(Home());
-    } else {
-      post.exception.response;
-    }
-  }
+  // void _validPost(BuildContext context) {
+  //   if (post.existData) {
+  //     context.push(Home());
+  //   } else {
+  //     post.exception.response;
+  //   }
+  // }
 }
