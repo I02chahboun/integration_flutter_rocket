@@ -11,7 +11,7 @@ class TextFielld extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: isVisibilty,
         builder: (context, value, _) {
-          return TextField(
+          return TextFormField(
             obscureText: isPassword ? isVisibilty.value : false,
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),
