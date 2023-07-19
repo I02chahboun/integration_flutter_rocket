@@ -22,8 +22,8 @@ class TextFielld extends StatelessWidget {
                           isVisibilty.value = !isVisibilty.value;
                         },
                         icon: Icon(isVisibilty.value
-                            ? Icons.visibility
-                            : Icons.visibility_off))
+                            ? Icons.visibility_off
+                            : Icons.visibility))
                     : null,
                 prefixIcon: Icon(
                   isPassword ? Icons.password : Icons.email,
