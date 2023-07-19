@@ -8,9 +8,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key}) {
-    const String baseUrlPost = "https://reqres.in/api";
+    const String baseUrlPost =
+        "http://restapi.adequateshop.com/api/authaccount";
     RocketClient requestUser = RocketClient(url: baseUrlPost);
-    Rocket.add<RocketClient>(key: "post", requestUser);
+    Rocket.add<RocketClient>(key: "post", requestUser, readOnly: true);
 
     const String baseUrlGet = "https://dummyjson.com";
     RocketClient requestProduct = RocketClient(url: baseUrlGet);
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
         useMaterial3: true,
       ),
-      home: const LogIn(),
+      home: LogIn(),
     );
   }
 }
