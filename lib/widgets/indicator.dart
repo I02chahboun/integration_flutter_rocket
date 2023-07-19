@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:integration_flutter_rocket/constants/color.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SliderProducts extends StatelessWidget {
@@ -14,7 +13,6 @@ class SliderProducts extends StatelessWidget {
         expansionFactor: 4,
         dotHeight: 6,
         dotWidth: 6,
-        activeDotColor: AppColors.green,
       ),
       controller: controller,
       count: count,
