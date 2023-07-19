@@ -7,7 +7,8 @@ import 'package:integration_flutter_rocket/widgets/elevated_button.dart';
 
 class Buttons extends StatelessWidget {
   final String title;
-  const Buttons({super.key, required this.title});
+  final VoidCallback onPressed;
+  const Buttons({super.key, required this.title, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class Buttons extends StatelessWidget {
       children: [
         ElevatedButtonn(
           title: isSignUp ? AppTexts.titleLogin : AppTexts.titleSignUp,
+          onPressed: onPressed,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +26,7 @@ class Buttons extends StatelessWidget {
             TextButton(
               onPressed: () {
                 if (title == AppTexts.signUp) {
-                  context.push(const SignUp());
+                  context.push(SignUp());
                 } else {
                   context.push(const LogIn());
                 }
