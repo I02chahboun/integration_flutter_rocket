@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rocket/flutter_rocket.dart';
 import 'package:integration_flutter_rocket/screens/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key}) {
+    const String baseUrlPost = "https://reqres.in/api";
+    RocketClient requestUser = RocketClient(url: baseUrlPost);
+    Rocket.add<RocketClient>(key: "post", requestUser);
+
+    const String baseUrlGet = "https://dummyjson.com";
+    RocketClient requestProduct = RocketClient(url: baseUrlGet);
+    Rocket.add<RocketClient>(key: "get", requestProduct);
+  }
 
   // This widget is the root of your application.
   @override
