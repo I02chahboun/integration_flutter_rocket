@@ -12,7 +12,7 @@ import 'package:integration_flutter_rocket/widgets/title_auth.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
-  final PostModel post = PostModel();
+  final Post post = Post();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,12 +48,17 @@ class SignUp extends StatelessWidget {
 
   void _registerUser(BuildContext context) {
     final Map<String, dynamic> data = {
-      "email": "ismail@gmail.com",
-      "password": "ismail123",
+      "name": "Developer",
+      "email": "Developer5@gmail.com",
+      "password": 123456
     };
-    Rocket.get<RocketClient>()
-        .request(Api.register,
-            model: post, data: data, method: HttpMethods.post)
+    Rocket.get<RocketClient>("post")
+        .request(
+          Api.register,
+          model: post,
+          data: data,
+          method: HttpMethods.post,
+        )
         .whenComplete(() => _validPost(context));
   }
 
