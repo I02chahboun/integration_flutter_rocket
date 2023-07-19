@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:integration_flutter_rocket/constants/image.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
+import 'package:integration_flutter_rocket/constants/util.dart';
+import 'package:integration_flutter_rocket/screens/home.dart';
 import 'package:integration_flutter_rocket/widgets/button.dart';
 import 'package:integration_flutter_rocket/widgets/text_filed.dart';
 import 'package:integration_flutter_rocket/widgets/title_auth.dart';
@@ -34,8 +36,11 @@ class LogIn extends StatelessWidget {
                 ),
               ),
               Expanded(child: TextFielld(labelText: AppTexts.labelPassword)),
-              const Buttons(
+              Buttons(
                 title: AppTexts.signUp,
+                onPressed: () {
+                  context.push(Home());
+                },
               ),
             ],
           ),
