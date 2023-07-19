@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:integration_flutter_rocket/constants/texts.dart';
 
 class AppBarr extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
-  const AppBarr(this.context, {super.key});
+  final String title;
+  const AppBarr(this.context, {super.key, required this.title});
   @override
   Size get preferredSize => Size(MediaQuery.of(context).size.width,
       MediaQuery.of(context).size.height * 0.06);
@@ -11,9 +11,9 @@ class AppBarr extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: const Text(
-        AppTexts.home,
-        style: TextStyle(fontWeight: FontWeight.w700),
+      title: Text(
+        title,
+        style: const TextStyle(fontWeight: FontWeight.w700),
       ),
       centerTitle: true,
       actions: [
