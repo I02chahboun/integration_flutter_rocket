@@ -20,21 +20,18 @@ class CardProduct extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Expanded(
-            child: Image.network(
-              image,
-              width: 70,
-              height: 70,
-            ),
-          ),
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Expanded(child: Image(image: NetworkImage(image))),
           Text(
             title,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            overflow: TextOverflow.ellipsis,
           ),
           Text(
             description,
             style: const TextStyle(fontSize: 14, color: AppColors.grey),
+            overflow: TextOverflow.ellipsis,
           ),
           Text(
             "price: $price\$",
