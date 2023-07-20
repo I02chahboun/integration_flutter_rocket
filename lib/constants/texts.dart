@@ -9,5 +9,8 @@ class AppTexts {
   static const String signin = "Signin";
   static const String home = "Home";
   static const String product = "Product";
-  static const String someText = "Please enter some text";
+  static const String errorEmail = "Please enter email";
+  static const String errorPassword = "Please enter password";
+  static const String characterPassword =
+      "The password must be at least 8 characters long.";
 }
