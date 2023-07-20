@@ -4,12 +4,12 @@ const String postNameField = "name";
 const String postEmailField = "email";
 const String postPasswordField = "password";
 
-class Post extends RocketModel<Post> {
+class User extends RocketModel<User> {
   String? name;
   String? email;
   int? password;
 
-  Post({
+  User({
     this.name,
     this.email,
     this.password,

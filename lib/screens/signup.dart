@@ -17,7 +17,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final Post post = Post();
+  final User post = User();
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

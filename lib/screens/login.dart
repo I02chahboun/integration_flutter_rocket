@@ -16,7 +16,7 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final Post post = Post();
+  final User post = User();
 
   final formKey = GlobalKey<FormState>();
 
