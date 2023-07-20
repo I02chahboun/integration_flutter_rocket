@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:integration_flutter_rocket/constants/texts.dart';
 
 extension NavigatorContext on BuildContext {
   void push(Widget child) {
@@ -29,4 +30,21 @@ Route animRoute(Widget child) {
       );
     },
   );
+}
+
+String? errorPassword(String? value) {
+  if (value!.length < 8) {
+    return AppTexts.characterPassword;
+  } else if (value.isEmpty) {
+    return AppTexts.errorPassword;
+  }
+  return null;
+}
+
+String? errorEmail(String? value) {
+  final bool isEmail = value!.contains("@gmail.com");
+  if (value.isEmpty || !isEmail) {
+    return AppTexts.errorEmail;
+  }
+  return null;
 }
