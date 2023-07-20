@@ -25,6 +25,7 @@ class _SignUpState extends State<SignUp> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
+          reverse: true,
           child: IntrinsicHeight(
             child: Form(
               key: formKey,
@@ -32,9 +33,17 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Expanded(
-                      flex: 5,
-                      child: Image(image: AssetImage(AppAssets.vectorSignUp))),
-                  const Expanded(child: TitleAuth(title: AppTexts.titleSignUp)),
+                      flex: 3,
+                      child: AspectRatio(
+                        aspectRatio: 3 / 2.38,
+                        child: Image(
+                          image: AssetImage(AppAssets.vectorSignUp),
+                        ),
+                      )),
+                  const TitleAuth(title: AppTexts.titleSignUp),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Expanded(
                       flex: 3,
                       child: Register(
