@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
-import 'package:integration_flutter_rocket/constants/util.dart';
 import 'package:integration_flutter_rocket/widgets/text_filed.dart';
 
 class Register extends StatelessWidget {
@@ -13,24 +12,15 @@ class Register extends StatelessWidget {
         Expanded(
             child: TextFielld(
           labelText: AppTexts.labelEmail,
-          validate: (value) {
-            return errorEmail(value);
-          },
         )),
         Expanded(
           child: TextFielld(
             labelText: AppTexts.labelPassword,
-            validate: (value) {
-              return errorPassword(value);
-            },
           ),
         ),
         Expanded(
           child: TextFielld(
-            labelText: AppTexts.labelPassword,
-            validate: (value) {
-              return errorPassword(value);
-            },
+            labelText: AppTexts.confirmPassword,
           ),
         ),
       ],
