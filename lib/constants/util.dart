@@ -32,19 +32,32 @@ Route animRoute(Widget child) {
   );
 }
 
-String? errorPassword(String? value) {
-  if (value!.length < 8) {
-    return AppTexts.characterPassword;
-  } else if (value.isEmpty) {
-    return AppTexts.errorPassword;
+class Validate {
+  static String? errorEmail(String? value) {
+    final bool isEmail = value!.contains("@");
+    if (value.isEmpty || !isEmail) {
+      return AppTexts.errorEmail;
+    }
+    return null;
   }
-  return null;
-}
 
-String? errorEmail(String? value) {
-  final bool isEmail = value!.contains("@gmail.com");
-  if (value.isEmpty || !isEmail) {
-    return AppTexts.errorEmail;
+  static late String? value;
+  static String? errorPassword(String? passwordValue) {
+    value = passwordValue!;
+    if (value!.isEmpty) {
+      return AppTexts.errorPassword;
+    } else if (passwordValue.length < 8) {
+      return AppTexts.characterPassword;
+    }
+    return null;
   }
-  return null;
+
+  static String? errorConfirmPassword(String? value) {
+    if (value!.isEmpty) {
+      return AppTexts.errorPassword;
+    } else if (Validate.value != value) {
+      return AppTexts.errorConfirmPassword;
+    }
+    return null;
+  }
 }
