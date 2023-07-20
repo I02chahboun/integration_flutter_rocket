@@ -13,4 +13,6 @@ class AppTexts {
   static const String errorPassword = "Please enter password";
   static const String characterPassword =
       "The password must be at least 8 characters long.";
+  static const String confirmPassword = "confirm password";
+  static const String errorConfirmPassword = "Confirm password does not match.";
 }
