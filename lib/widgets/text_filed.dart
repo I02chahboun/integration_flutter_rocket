@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rocket/flutter_rocket.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
+import 'package:integration_flutter_rocket/constants/util.dart';
 
 class TextFielld extends StatelessWidget {
   final String labelText;
-  final String? Function(String?) validate;
   TextFielld({
     super.key,
     required this.labelText,
-    required this.validate,
   });
   final RocketValue<bool> isVisibilty = true.mini;
   @override
   Widget build(BuildContext context) {
-    final bool isPassword = labelText == AppTexts.labelPassword;
+    final bool isPassword = labelText == AppTexts.labelPassword ||
+        labelText == AppTexts.confirmPassword;
     return RocketMiniView(
         value: isVisibilty,
         builder: () {
@@ -38,8 +38,20 @@ class TextFielld extends StatelessWidget {
                   isPassword ? Icons.password : Icons.email,
                   size: 22,
                 )),
-            validator: validate,
+            validator: validator(),
           );
         });
+  }
+
+  String? Function(String?)? validator() {
+    switch (labelText) {
+      case AppTexts.labelEmail:
+        return Validate.errorEmail;
+
+      case AppTexts.labelPassword:
+        return Validate.errorPassword;
+      default:
+        return Validate.errorConfirmPassword;
+    }
   }
 }
