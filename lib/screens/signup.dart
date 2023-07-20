@@ -9,9 +9,16 @@ import 'package:integration_flutter_rocket/widgets/button.dart';
 import 'package:integration_flutter_rocket/widgets/register_textfields.dart';
 import 'package:integration_flutter_rocket/widgets/title_auth.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   final Post post = Post();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,53 +26,38 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
           child: IntrinsicHeight(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Expanded(
-                    flex: 5,
-                    child: Image(image: AssetImage(AppAssets.vectorSignUp))),
-                const Expanded(child: TitleAuth(title: AppTexts.titleSignUp)),
-                const Expanded(flex: 3, child: Register()),
-                RocketMiniView(
-                    value: post,
-                    builder: () {
-                      return Buttons(
-                        title: AppTexts.signin,
-                        onPressed: () {
-                          context.push(Home());
-                        },
-                      );
-                    }),
-              ],
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                      flex: 5,
+                      child: Image(image: AssetImage(AppAssets.vectorSignUp))),
+                  const Expanded(child: TitleAuth(title: AppTexts.titleSignUp)),
+                  Expanded(
+                      flex: 3,
+                      child: Register(
+                        formKey: formKey,
+                      )),
+                  RocketMiniView(
+                      value: post,
+                      builder: () {
+                        return Buttons(
+                          title: AppTexts.signin,
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              context.push(Home());
+                            }
+                          },
+                        );
+                      }),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-  // void _registerUser(BuildContext context) {
-  //   final Map<String, dynamic> data = {
-  //     "name": "Developer",
-  //     "email": "Developer5@gmail.com",
-  //     "password": 123456
-  //   };
-  //   Rocket.get<RocketClient>("post")
-  //       .request(
-  //         Api.register,
-  //         model: post,
-  //         data: data,
-  //         method: HttpMethods.post,
-  //       )
-  //       .whenComplete(() => _validPost(context));
-  // }
-
-  // void _validPost(BuildContext context) {
-  //   if (post.existData) {
-  //     context.push(Home());
-  //   } else {
-  //     post.exception.response;
-  //   }
-  // }
 }

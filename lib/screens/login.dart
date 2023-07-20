@@ -8,9 +8,17 @@ import 'package:integration_flutter_rocket/widgets/button.dart';
 import 'package:integration_flutter_rocket/widgets/text_filed.dart';
 import 'package:integration_flutter_rocket/widgets/title_auth.dart';
 
-class LogIn extends StatelessWidget {
+class LogIn extends StatefulWidget {
+  const LogIn({super.key});
+
+  @override
+  State<LogIn> createState() => _LogInState();
+}
+
+class _LogInState extends State<LogIn> {
   final Post post = Post();
-  LogIn({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,56 +28,48 @@ class LogIn extends StatelessWidget {
       child: SingleChildScrollView(
         reverse: true,
         child: IntrinsicHeight(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Expanded(
-                flex: 5,
-                child: Image(
-                  image: AssetImage(AppAssets.vectorLogin),
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Expanded(
+                  flex: 5,
+                  child: Image(
+                    image: AssetImage(AppAssets.vectorLogin),
+                  ),
                 ),
-              ),
-              const Expanded(
-                child: TitleAuth(title: AppTexts.titleLogin),
-              ),
-              Expanded(
-                child: TextFielld(
-                  labelText: AppTexts.labelEmail,
+                const Expanded(
+                  child: TitleAuth(title: AppTexts.titleLogin),
                 ),
-              ),
-              Expanded(child: TextFielld(labelText: AppTexts.labelPassword)),
-              Buttons(
-                title: AppTexts.signUp,
-                onPressed: () {
-                  context.push(Home());
-                },
-              ),
-            ],
+                Expanded(
+                  child: TextFielld(
+                    labelText: AppTexts.labelEmail,
+                    validate: (value) {
+                      return errorEmail(value);
+                    },
+                  ),
+                ),
+                Expanded(
+                    child: TextFielld(
+                  labelText: AppTexts.labelPassword,
+                  validate: (value) {
+                    return errorPassword(value);
+                  },
+                )),
+                Buttons(
+                  title: AppTexts.signUp,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      context.push(Home());
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
     ));
   }
-
-  // void _post(BuildContext context) {
-  //   Map<String, dynamic> data = {
-  //     "email": "Developer5@gmail.com",
-  //     "password": 123456,
-  //   };
-  //   Rocket.get<RocketClient>("post").request(Api.login,
-  //       data: data,
-  //       model: post,
-  //       method: HttpMethods.post,
-  //       params: {
-  //         'Authorization': 'Bearer <token>'
-  //       }).whenComplete(() => _validLogin(context));
-  // }
-
-  // void _validLogin(BuildContext context) {
-  //   if (post.existData) {
-  //     context.push(Home());
-  //   } else {
-  //     post.exception.response;
-  //   }
-  // }
 }
