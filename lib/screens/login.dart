@@ -34,28 +34,23 @@ class _LogInState extends State<LogIn> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Expanded(
-                  flex: 5,
+                  flex: 4,
                   child: Image(
                     image: AssetImage(AppAssets.vectorLogin),
                   ),
                 ),
-                const Expanded(
-                  child: TitleAuth(title: AppTexts.titleLogin),
+                const TitleAuth(title: AppTexts.titleLogin),
+                const SizedBox(
+                  height: 20,
                 ),
                 Expanded(
                   child: TextFielld(
                     labelText: AppTexts.labelEmail,
-                    validate: (value) {
-                      return errorEmail(value);
-                    },
                   ),
                 ),
                 Expanded(
                     child: TextFielld(
                   labelText: AppTexts.labelPassword,
-                  validate: (value) {
-                    return errorPassword(value);
-                  },
                 )),
                 Buttons(
                   title: AppTexts.signUp,
