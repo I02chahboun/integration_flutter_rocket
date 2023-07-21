@@ -18,28 +18,32 @@ class TextFielld extends StatelessWidget {
         value: isVisibilty,
         builder: () {
           return TextFormField(
-            keyboardType: isPassword
-                ? TextInputType.visiblePassword
-                : TextInputType.emailAddress,
-            obscureText: isPassword ? isVisibilty.v : false,
-            decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: labelText,
-                suffixIcon: isPassword
-                    ? IconButton(
-                        onPressed: () {
-                          isVisibilty.v = !isVisibilty.v;
-                        },
-                        icon: Icon(isVisibilty.v
-                            ? Icons.visibility_off
-                            : Icons.visibility))
-                    : null,
-                prefixIcon: Icon(
-                  isPassword ? Icons.password : Icons.email,
-                  size: 22,
-                )),
-            validator: validator(),
-          );
+              keyboardType: isPassword
+                  ? TextInputType.visiblePassword
+                  : TextInputType.emailAddress,
+              obscureText: isPassword ? isVisibilty.v : false,
+              decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: labelText,
+                  suffixIcon: isPassword
+                      ? IconButton(
+                          onPressed: () {
+                            isVisibilty.v = !isVisibilty.v;
+                          },
+                          icon: Icon(isVisibilty.v
+                              ? Icons.visibility_off
+                              : Icons.visibility))
+                      : null,
+                  prefixIcon: Icon(
+                    isPassword ? Icons.password : Icons.email,
+                    size: 22,
+                  )),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppTexts.fieldRequired;
+                }
+                return validator()?.call(value);
+              });
         });
   }
 
