@@ -16,4 +16,6 @@ class AppTexts {
   static const String confirmPassword = "confirm password";
   static const String errorConfirmPassword = "Confirm password does not match.";
   static const String fieldRequired = "This field is required";
+  static const String addBasket = "Add To Cart";
+  static const String similar = "Similar this";
 }
