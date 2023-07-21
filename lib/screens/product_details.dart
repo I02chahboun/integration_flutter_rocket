@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:integration_flutter_rocket/constants/color.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
 import 'package:integration_flutter_rocket/models/product.dart';
 import 'package:integration_flutter_rocket/widgets/appbar.dart';
@@ -12,6 +13,7 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.beig,
       appBar: AppBarr(
         context,
         title: AppTexts.product,
@@ -24,8 +26,7 @@ class ProductDetails extends StatelessWidget {
               images: product.images!,
             ),
           ),
-          InfoProduct(product: product),
-          const Spacer(),
+          Expanded(flex: 2, child: InfoProduct(product: product)),
         ]),
       ),
     );
