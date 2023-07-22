@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rocket/flutter_rocket.dart';
 import 'package:integration_flutter_rocket/constants/color.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
+import 'package:integration_flutter_rocket/constants/util.dart';
 import 'package:integration_flutter_rocket/models/product.dart';
+import 'package:integration_flutter_rocket/screens/show_image.dart';
 import 'package:integration_flutter_rocket/widgets/filled_button.dart';
 
 class InfoProduct extends StatelessWidget {
@@ -61,13 +63,24 @@ class InfoProduct extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: product.images!.length,
               itemBuilder: (BuildContext context, int index) {
+                final String image = product.images![index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3),
-                        border: Border.all(color: AppColors.grey)),
-                    child: Image.network(product.images![index]),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.push(ShowImage(
+                          image: image, description: product.description!));
+                    },
+                    child: Hero(
+                      transitionOnUserGestures: true,
+                      tag: image,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(color: AppColors.grey)),
+                        child: Image.network(image),
+                      ),
+                    ),
                   ),
                 );
               },
