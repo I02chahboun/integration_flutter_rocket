@@ -16,7 +16,7 @@ class ProductDetails extends StatelessWidget {
       backgroundColor: AppColors.beig,
       appBar: AppBarr(
         context,
-        title: AppTexts.product,
+        title: AppTexts.detail,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),

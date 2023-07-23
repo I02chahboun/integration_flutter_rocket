@@ -12,7 +12,7 @@ class AppBarr extends StatelessWidget implements PreferredSizeWidget {
       MediaQuery.of(context).size.height * 0.06);
   @override
   Widget build(BuildContext context) {
-    final bool isProductDetails = title == AppTexts.product;
+    final bool isProductDetails = title == AppTexts.detail;
     return AppBar(
       automaticallyImplyLeading: false,
       shadowColor: isProductDetails ? AppColors.trans : null,

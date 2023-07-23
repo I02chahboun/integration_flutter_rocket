@@ -8,7 +8,7 @@ class AppTexts {
   static const String alreadyAccount = "Already have an account?";
   static const String signin = "Signin";
   static const String home = "Home";
-  static const String product = "Product";
+  static const String detail = "Details";
   static const String errorEmail = "Please enter email";
   static const String errorPassword = "Please enter password";
   static const String characterPassword =
