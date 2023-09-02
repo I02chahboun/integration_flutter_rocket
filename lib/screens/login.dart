@@ -1,25 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:integration_flutter_rocket/constants/image.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
 import 'package:integration_flutter_rocket/constants/util.dart';
-import 'package:integration_flutter_rocket/models/auth.dart';
 import 'package:integration_flutter_rocket/screens/home.dart';
 import 'package:integration_flutter_rocket/widgets/button.dart';
 import 'package:integration_flutter_rocket/widgets/text_filed.dart';
 import 'package:integration_flutter_rocket/widgets/title_auth.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
-
-  @override
-  State<LogIn> createState() => _LogInState();
-}
-
-class _LogInState extends State<LogIn> {
-  final User post = User();
+// ignore: must_be_immutable
+class LogIn extends StatelessWidget {
+  LogIn({super.key});
 
   final formKey = GlobalKey<FormState>();
-
+  late String _email, _password;
+  final FirebaseAuth instance = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +40,39 @@ class _LogInState extends State<LogIn> {
                 ),
                 Expanded(
                   child: TextFielld(
+                    onChanged: (value) {
+                      _email = value;
+                    },
                     labelText: AppTexts.labelEmail,
                   ),
                 ),
                 Expanded(
                     child: TextFielld(
+                  onChanged: (value) {
+                    _password = value;
+                  },
                   labelText: AppTexts.labelPassword,
                 )),
                 Buttons(
                   title: AppTexts.signUp,
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      context.push(Home());
+                      try {
+                        await instance.signInWithEmailAndPassword(
+                            email: _email, password: _password);
+                        // ignore: use_build_context_synchronously
+                        context.push(const Home());
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == "invalid-email") {
+                          showSnackbar(context, "invalid-email");
+                        } else if (e.code == "user-disabled") {
+                          showSnackbar(context, "user-disabled");
+                        } else if (e.code == "user-not-found") {
+                          showSnackbar(context, "user-not-found");
+                        } else {
+                          showSnackbar(context, "wrong-password");
+                        }
+                      }
                     }
                   },
                 ),
