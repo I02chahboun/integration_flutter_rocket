@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:integration_flutter_rocket/constants/color.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
@@ -6,10 +7,11 @@ import 'package:integration_flutter_rocket/constants/util.dart';
 class AppBarr extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
   final String title;
-  const AppBarr(this.context, {super.key, required this.title});
+  AppBarr(this.context, {super.key, required this.title});
   @override
   Size get preferredSize => Size(MediaQuery.of(context).size.width,
       MediaQuery.of(context).size.height * 0.06);
+  final FirebaseAuth instance = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     final bool isProductDetails = title == AppTexts.detail;
@@ -51,6 +53,15 @@ class AppBarr extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {},
           icon: Icon(
             Icons.shopping_cart,
+            color: AppColors.grey9,
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            instance.signOut();
+          },
+          icon: Icon(
+            Icons.logout,
             color: AppColors.grey9,
           ),
         ),
