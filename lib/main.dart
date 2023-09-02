@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rocket/flutter_rocket.dart';
-import 'package:integration_flutter_rocket/screens/login.dart';
+import 'package:integration_flutter_rocket/screens/home.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
         useMaterial3: true,
       ),
-      home: const LogIn(),
+      home: const Home(),
     );
   }
 }
