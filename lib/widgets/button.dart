@@ -26,9 +26,9 @@ class Buttons extends StatelessWidget {
             TextButton(
               onPressed: () {
                 if (title == AppTexts.signUp) {
-                  context.push(const SignUp());
+                  context.push(SignUp());
                 } else {
-                  context.push(const LogIn());
+                  context.push(LogIn());
                 }
               },
               child: Text(title),
