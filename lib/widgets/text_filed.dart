@@ -5,10 +5,8 @@ import 'package:integration_flutter_rocket/constants/util.dart';
 
 class TextFielld extends StatelessWidget {
   final String labelText;
-  TextFielld({
-    super.key,
-    required this.labelText,
-  });
+  final Function(String)? onChanged;
+  TextFielld({super.key, required this.labelText, required this.onChanged});
   final RocketValue<bool> isVisibilty = true.mini;
   @override
   Widget build(BuildContext context) {
@@ -18,6 +16,7 @@ class TextFielld extends StatelessWidget {
         value: isVisibilty,
         builder: () {
           return TextFormField(
+              onChanged: onChanged,
               keyboardType: isPassword
                   ? TextInputType.visiblePassword
                   : TextInputType.emailAddress,
