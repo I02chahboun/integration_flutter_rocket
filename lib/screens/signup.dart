@@ -1,24 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rocket/flutter_rocket.dart';
 import 'package:integration_flutter_rocket/constants/image.dart';
 import 'package:integration_flutter_rocket/constants/texts.dart';
 import 'package:integration_flutter_rocket/constants/util.dart';
-import 'package:integration_flutter_rocket/models/auth.dart';
 import 'package:integration_flutter_rocket/screens/home.dart';
 import 'package:integration_flutter_rocket/widgets/button.dart';
-import 'package:integration_flutter_rocket/widgets/register_textfields.dart';
+import 'package:integration_flutter_rocket/widgets/text_filed.dart';
 import 'package:integration_flutter_rocket/widgets/title_auth.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+// ignore: must_be_immutable
+class SignUp extends StatelessWidget {
+  SignUp({super.key});
 
-  @override
-  State<SignUp> createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUp> {
-  final User post = User();
   final formKey = GlobalKey<FormState>();
+  late String _email, _password;
+  final FirebaseAuth instance = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,21 +42,54 @@ class _SignUpState extends State<SignUp> {
                   ),
                   Expanded(
                       flex: 3,
-                      child: Register(
-                        formKey: formKey,
+                      child: Column(
+                        children: [
+                          Expanded(
+                              child: TextFielld(
+                            onChanged: (value) {
+                              _email = value;
+                            },
+                            labelText: AppTexts.labelEmail,
+                          )),
+                          Expanded(
+                            child: TextFielld(
+                              onChanged: (value) {
+                                _password = value;
+                              },
+                              labelText: AppTexts.labelPassword,
+                            ),
+                          ),
+                          Expanded(
+                            child: TextFielld(
+                              onChanged: (value) {},
+                              labelText: AppTexts.confirmPassword,
+                            ),
+                          ),
+                        ],
                       )),
-                  RocketMiniView(
-                      value: post,
-                      builder: () {
-                        return Buttons(
-                          title: AppTexts.signin,
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.push(Home());
-                            }
-                          },
-                        );
-                      }),
+                  Buttons(
+                    title: AppTexts.signin,
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        try {
+                          await instance.createUserWithEmailAndPassword(
+                              email: _email, password: _password);
+                          // ignore: use_build_context_synchronously
+                          context.push(const Home());
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == "email-already-in-use") {
+                            showSnackbar(context, "email-already-in-use");
+                          } else if (e.code == "invalid-email") {
+                            showSnackbar(context, "invalid-email");
+                          } else if (e.code == "operation-not-allowed") {
+                            showSnackbar(context, "operation-not-allowed");
+                          } else if (e.code == "weak-password") {
+                            showSnackbar(context, "weak-password");
+                          }
+                        }
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
